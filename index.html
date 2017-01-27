@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Todo Application</title>
+	<style>
+		* {
+			font-family: Bernard MT Condensed, Castellar;
+			background-color: blue;
+		}
+		.text {
+			padding-left: 10px;
+			background: white;
+			width: 200px;
+			height: 30px;
+			border: none;
+		}
+		button {
+			background: White;
+			width: 150px;
+			height: 30px;
+			border: none;
+			margin-left: 10px;
+		}
+	</style>
+</head>
+<body ng-app="todoApp">
+	<h1><center>TodoApplication</center></h1>
+	<div ng-controller="TodoCtrl">
+		<div>
+			<center><input type="text" class="text" placeholder="Type Todo" ng-model="newTodo.text" ng-keypress="keypress()" autofocus="true">
+			<input type="hidden" value="false" ng-model="newTodo.completed">
+			<button ng-click="add()">Add</button></center>
+		</div>
+		<br>
+		<div ng-repeat="item in todos"><br>
+			<center><input type="checkbox" ng-model="item.completed">
+			<span ng-bind="item.text" ng-class="{'completed': item.completed}"></span>
+			<button ng-click="delete($index)">Delete</button></center>
+		</div>
+		<br>
+		<center><button ng-click="clearCompleted()">Clear Completed</button></center>
+	</div>
+
+	<script src="js/angular.min.js"></script>
+	<script src="js/todo.module.js"></script>
+	<script src="js/todo.controller.js"></script>
+	<script src="js/todo.service.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
